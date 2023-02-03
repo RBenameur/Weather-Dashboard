@@ -12,6 +12,16 @@ Daily information includes:
 * wind speed in kilometers per hour
 * humidity
 
+## Technologies
+
+A list of technologies used within the project:
+* Moment.js (https://momentjs.com/): Version 2.29.4
+* Jquery (https://jquery.com/): Version 3.2.1
+* Bootstraps (https://getbootstrap.com/): Version 4.3.1
+* Font awesome (https://fontawesome.com/): Version 4.7.0
+
+## Installation
+
 
 ## Installation
 

@@ -27,6 +27,11 @@ function populateEls (obj) {
     `)
 }
 
+function outputImg (data) {
+    
+    return `<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="${data.weather[0].description}"></img>`
+}
+
 // function getting 5 day forecast data
 function fetchForecastWeather(lon, lat) {   
     $.get(forecastURL + `lat=${lat}&lon=${lon}`).then(function(data) {
@@ -52,13 +57,15 @@ function fetchForecastWeather(lon, lat) {
 
                 var futureDate = moment().add(count, 'days').format('DD/MM/YYYY');
 
-                console.log(futureDate);
+                var currentItem = forecastArr[index];
+
+                //console.log(futureDate);
                 cardContainer.append(`
                 <div class="card">
                   <div class="card-body">
                     <h5 class="mt-1 h5">${futureDate}</h5>
-                    <div>ICON</div>
-                    ${populateEls(forecastArr[index])}
+                    ${outputImg(currentItem)}
+                    ${populateEls(currentItem)}
                   </div>
                 </div>
                 `);
@@ -76,13 +83,13 @@ function fetchForecastWeather(lon, lat) {
 //function getting data for current date
 function fetchCurrentWeather(search) {
     $.get(currentURL + `q=${search}`).then(function(data) {
-        console.log(data);
+        //console.log(data);
         
         // var main = data.main;
         // var convertedWindSpd = data.wind.speed * 3.6;
 
         $('#today').html(`
-        <h3 class="mt-1 h3">${data.name} ${currentTime} <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="${data.weather[0].description}"></h3>
+        <h3 class="mt-1 h3">${data.name} ${currentTime} ${outputImg(data)}</h3>
         ${populateEls(data)}
         `);
 

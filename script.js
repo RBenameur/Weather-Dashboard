@@ -32,7 +32,7 @@ function fetchForecastWeather(lon, lat) {
     $.get(forecastURL + `lat=${lat}&lon=${lon}`).then(function(data) {
 
         var count = 1;
-        
+
         var cardContainer =  $('.card-container');
 
         cardContainer.html('');
@@ -76,13 +76,13 @@ function fetchForecastWeather(lon, lat) {
 //function getting data for current date
 function fetchCurrentWeather(search) {
     $.get(currentURL + `q=${search}`).then(function(data) {
-        //console.log(data);
+        console.log(data);
         
         // var main = data.main;
         // var convertedWindSpd = data.wind.speed * 3.6;
 
         $('#today').html(`
-        <h3 class="mt-1 h3">${data.name} ${currentTime} <span>${data.weather[0].icon}</span></h3>
+        <h3 class="mt-1 h3">${data.name} ${currentTime} <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="${data.weather[0].description}"></h3>
         ${populateEls(data)}
         `);
 

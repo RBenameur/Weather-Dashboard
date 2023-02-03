@@ -131,8 +131,6 @@ function init() {
 
         for (var item in history) {
 
-            //console.log(history[item]);
-
             historyEl.append(`
             <button class="historyBtn btn btn-secondary m-1">${history[item]}</button>
             `);
@@ -141,9 +139,7 @@ function init() {
     };
 
     $('.historyBtn').on('click', function (event) {
-        //console.log(event.target.innerHTML)
         fetchCurrentWeather(event.target.innerHTML);
-
     });
 
     $('#search-button').on('click', searchBtnClicked);

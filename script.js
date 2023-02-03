@@ -1,14 +1,32 @@
 var apiKey = '87b24c5018ab113f42b86c0bdc18e42a' ;
 
-var city = 'London';
+var baseURL = 'https://api.openweathermap.org/data/2.5/';
 
-https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+var weatherURL = baseURL + `weather?&appid=${apiKey}&units=metric&q=`;
+
+var forecastURL = baseURL + `forecast?&appid=${apiKey}&units=metric&`;
+
+//var city = 'London';
+
+//https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
 
 function fetchCurrentWeather(search) {
-    $.get(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${apiKey}`).then(function(data) {
-        
+    $.get(weatherURL + search).then(function(data) {
         console.log(data);
+        
+        var main = data.main;
+        var convertedWindSpd = data.wind.speed * 3.6;
+        var currentTime = moment().format('(DD/MM/YYYY)');
+
+
+        $('#today').html(`
+        <h3 class="mt-1 h3">${data.name} ${currentTime} <span>${data.weather[0].icon}</span></h3>
+        <p>Temp: ${main.temp}&#8451;</p>
+        <p>${convertedWindSpd.toFixed(2)} KPH</p>
+        <p>${main.humidity} %</p>
+        `);
+
 
     });
 };

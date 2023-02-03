@@ -117,16 +117,45 @@ function searchBtnClicked(event) {
     if(searchVal) {
         fetchCurrentWeather(searchVal);
 
+        var returnedLocalStorage = getLocalStorage();
+
+        returnedLocalStorage[searchVal] = searchVal;
+
+        localStorage.setItem('weather-history', JSON.stringify(returnedLocalStorage));
+
         // if city not in local storage push to local storage
 
         searchInput.val('');
     };
 
-}
+};
+ 
+function getLocalStorage() {
+
+    return JSON.parse(localStorage.getItem('weather-history')) || {};
+
+};
 
 function init() {
+    
+    var historyEl = $('#history');
+    
+    historyEl.html('');
 
     // load search history from local storage
+    var history = getLocalStorage();
+    
+    if(history) {
+
+        for (var item in history) {
+
+            console.log(history[item]);
+
+            historyEl.append(`
+            <button class="btn btn-secondary m-1">${history[item]}</button>
+            `);
+        };
+    };
 
     $('#search-button').on('click', searchBtnClicked);
 

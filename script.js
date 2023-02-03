@@ -8,11 +8,6 @@ var currentURL = baseURL + `weather?&appid=${apiKey}&units=metric&`;
 
 var forecastURL = baseURL + `forecast?&appid=${apiKey}&units=metric&`;
 
-//var city = 'London';
-
-//https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-
-
 // function to populate elements from current and 5 day forecast where they are the same
 function populateEls (obj) {
 
@@ -25,13 +20,14 @@ function populateEls (obj) {
     <p>Wind: ${convertedWindSpd.toFixed(2)} KPH</p>
     <p>Humidity: ${main.humidity} %</p>
     `)
-}
+};
 
 //function to return img element with source to icon for weather for specific day
 function outputImg (data) {
 
     return `<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="${data.weather[0].description}"></img>`
-}
+
+};
 
 // function getting 5 day forecast data
 function fetchForecastWeather(lon, lat) {   
@@ -53,16 +49,12 @@ function fetchForecastWeather(lon, lat) {
 
             var isNoon = dateTxt.includes('12:');
 
-            //console.log(isNoon)
-
             if(isNoon) {
-                //console.log(forecastArr[index]);
 
                 var futureDate = moment().add(count, 'days').format('DD/MM/YYYY');
 
                 var currentItem = forecastArr[index];
 
-                //console.log(futureDate);
                 cardContainer.append(`
                 <div class="card">
                   <div class="card-body">
@@ -78,7 +70,6 @@ function fetchForecastWeather(lon, lat) {
             
         };
 
-        //data.list;
     });
 
 };
@@ -86,10 +77,6 @@ function fetchForecastWeather(lon, lat) {
 //function getting data for current date
 function fetchCurrentWeather(search) {
     $.get(currentURL + `q=${search}`).then(function(data) {
-        //console.log(data);
-        
-        // var main = data.main;
-        // var convertedWindSpd = data.wind.speed * 3.6;
 
         $('#today').html(`
         <h3 class="mt-1 h3">${data.name} ${currentTime} ${outputImg(data)}</h3>
@@ -106,13 +93,10 @@ function fetchCurrentWeather(search) {
 function searchBtnClicked(event) {
     
     event.preventDefault();
-    //console.log('clicked');
 
     var searchInput = $('#search-input');
 
     var searchVal = searchInput.val().toLowerCase();
-
-    //console.log(searchVal);
 
     if(searchVal) {
         fetchCurrentWeather(searchVal);
@@ -123,13 +107,12 @@ function searchBtnClicked(event) {
 
         localStorage.setItem('weather-history', JSON.stringify(returnedLocalStorage));
 
-        // if city not in local storage push to local storage
-
         searchInput.val('');
     };
 
 };
  
+// function to return search history from local storage 
 function getLocalStorage() {
 
     return JSON.parse(localStorage.getItem('weather-history')) || {};
@@ -142,7 +125,6 @@ function init() {
     
     historyEl.html('');
 
-    // load search history from local storage
     var history = getLocalStorage();
     
     if(history) {

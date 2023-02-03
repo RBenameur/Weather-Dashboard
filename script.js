@@ -27,14 +27,17 @@ function populateEls (obj) {
     `)
 }
 
+//function to return img element with source to icon for weather for specific day
 function outputImg (data) {
-    
+
     return `<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="${data.weather[0].description}"></img>`
 }
 
 // function getting 5 day forecast data
 function fetchForecastWeather(lon, lat) {   
     $.get(forecastURL + `lat=${lat}&lon=${lon}`).then(function(data) {
+        
+        $('#forecast').removeClass('invisible')
 
         var count = 1;
 
@@ -91,7 +94,7 @@ function fetchCurrentWeather(search) {
         $('#today').html(`
         <h3 class="mt-1 h3">${data.name} ${currentTime} ${outputImg(data)}</h3>
         ${populateEls(data)}
-        `);
+        `).removeClass('invisible');
 
         var coord = data.coord;
 
@@ -114,12 +117,16 @@ function searchBtnClicked(event) {
     if(searchVal) {
         fetchCurrentWeather(searchVal);
 
+        // if city not in local storage push to local storage
+
         searchInput.val('');
     };
 
 }
 
 function init() {
+
+    // load search history from local storage
 
     $('#search-button').on('click', searchBtnClicked);
 

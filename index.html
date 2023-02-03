@@ -38,75 +38,18 @@
           </div>
         </form>
         <!-- div showing previous searches-->
-        <div class="list-group" id="history">
-          <button class="btn btn-secondary m-1">London</button>
-          <button class="btn btn-secondary m-1">Leeds</button>
-          <button class="btn btn-secondary m-1">Liverpool</button>
-
-        </div>
+        <div class="list-group" id="history"></div>
       </aside>
 
       <div class="col-lg-9 pb-3">
         <!-- current forecast-->
-        <section id="today" class="p-2 mt-3 border border-dark" role="region" aria-live="polite">
-          <h3 class="mt-1 h3">London (16/12/2022) <span>[ICON]</span></h3>
-          <p id="current-temp">Temp: 2&#8451;</p>
-          <p id="current-wind">1.44 KPH</p>
-          <p id="current-humidity">92 %</p>
+        <section id="today" class="p-2 mt-3 border border-dark invisible" role="region" aria-live="polite">
         </section>
         <!-- 5 day forecast at noon-->
-        <section id="forecast" class="mt-3" role="region" aria-live="polite">
+        <section id="forecast" class="mt-3 invisible" role="region" aria-live="polite">
           <h4 class="mt-1 h4">5-Day Forecast</h4>
           <div class=" card-container d-flex flex-row flex-wrap justify-content-sm-around">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="mt-1 h5">16/12/2022</h5>
-                <div>ICON</div>
-                <p id="day1-temp">Temp: 2&#8451;</p>
-                <p id="day1-wind">1.44 KPH</p>
-                <p id="day1-humidity">92 %</p>
-              </div>
-            </div>
-  
-            <div class="card">
-              <div class="card-body">
-                <h5 class="mt-1 h5">17/12/2022</h5>
-                <div>ICON</div>
-                <p id="day2-temp">Temp: 2&#8451;</p>
-                <p id="day2-wind">1.44 KPH</p>
-                <p id="day2-humidity">92 %</p>
-              </div>
-            </div>
-  
-            <div class="card">
-              <div class="card-body">
-                <h5 class="mt-1 h5">18/12/2022</h5>
-                <div>ICON</div>
-                <p id="day3-temp">Temp: 2&#8451;</p>
-                <p id="day3-wind">1.44 KPH</p>
-                <p id="day3-humidity">92 %</p>
-              </div>
-            </div>
-  
-            <div class="card">
-              <div class="card-body">
-                <h5 class="mt-1 h5">19/12/2022</h5>
-                <div>ICON</div>
-                <p id="day4-temp">Temp: 2&#8451;</p>
-                <p id="day4-wind">1.44 KPH</p>
-                <p id="day4-humidity">92 %</p>
-              </div>
-            </div>
-  
-            <div class="card">
-              <div class="card-body">
-                <h5 class="mt-1 h5">16/12/2022</h5>
-                <div>ICON</div>
-                <p id="day5-temp">Temp: 2&#8451;</p>
-                <p id="day5-wind">1.44 KPH</p>
-                <p id="day5-humidity">92 %</p>
-              </div>
-            </div>
+
           </div>
         </section>
       </div>

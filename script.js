@@ -12,14 +12,35 @@ var forecastURL = baseURL + `forecast?&appid=${apiKey}&units=metric&`;
 
 //https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
+function fetchForecastWeather(lon, lat) {   
+    $.get(forecastURL + `lat=${lat}&lon=${lon}`).then(function(data) {
+        var forecastArr = data.list;
 
+        for (var index in forecastArr) {
+
+            var dateTxt = forecastArr[index].dt_txt;
+
+            var isNoon = dateTxt.includes('12:');
+
+            //console.log(isNoon)
+
+            if(isNoon) {
+                console.log(forecastArr[index]);
+
+            };
+            
+        };
+
+        //data.list;
+    });
+
+}
 function fetchCurrentWeather(search) {
     $.get(currentURL + `q=${search}`).then(function(data) {
-        console.log(data);
+        //console.log(data);
         
         var main = data.main;
         var convertedWindSpd = data.wind.speed * 3.6;
-
 
         $('#today').html(`
         <h3 class="mt-1 h3">${data.name} ${currentTime} <span>${data.weather[0].icon}</span></h3>
@@ -27,6 +48,10 @@ function fetchCurrentWeather(search) {
         <p>Wind: ${convertedWindSpd.toFixed(2)} KPH</p>
         <p>Humidity: ${main.humidity} %</p>
         `);
+
+        var coord = data.coord;
+
+        fetchForecastWeather(coord.lon, coord.lat);
     });
 };
 

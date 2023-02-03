@@ -131,13 +131,20 @@ function init() {
 
         for (var item in history) {
 
-            console.log(history[item]);
+            //console.log(history[item]);
 
             historyEl.append(`
-            <button class="btn btn-secondary m-1">${history[item]}</button>
+            <button class="historyBtn btn btn-secondary m-1">${history[item]}</button>
             `);
+
         };
     };
+
+    $('.historyBtn').on('click', function (event) {
+        //console.log(event.target.innerHTML)
+        fetchCurrentWeather(event.target.innerHTML);
+
+    });
 
     $('#search-button').on('click', searchBtnClicked);
 

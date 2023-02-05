@@ -20,8 +20,6 @@ A list of technologies used within the project:
 * Bootstraps (https://getbootstrap.com/): Version 4.3.1
 * Font awesome (https://fontawesome.com/): Version 4.7.0
 
-## Installation
-
 
 ## Installation
 
